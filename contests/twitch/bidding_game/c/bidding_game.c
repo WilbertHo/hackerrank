@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+int calculate_bid(int player,int pos,int* first_moves,int* second_moves) {
+    //Your logic to be put here
+    return 0;
+}
+
+int main(void) {
+
+    int player;                                          //1 if first player 2 if second
+    int scotch_pos;                                      //position of the scotch 
+    int bid;                                             //Amount bid by the players
+    size_t buf_limit = 500;
+    char *first_move = (char *) malloc(buf_limit);      //previous bids of the first player
+    char *second_move = (char *) malloc(buf_limit);     //prevous bids of the second player
+    char *remove_new_line = (char *) malloc(2);
+    char *tok_1,*tok_2;
+    int first_moves[200] = {0};
+    int second_moves[200] = {0};
+    int i,j;
+    scanf("%d",&player);
+    scanf("%d",&scotch_pos);
+    getline(&remove_new_line,&buf_limit,stdin);      //removes a new line from the buffer for getline to work.
+    getline(&first_move,&buf_limit,stdin);
+    getline(&second_move,&buf_limit,stdin);
+    tok_1 = strtok(first_move," ");
+
+    for(i=0;tok_1;i++) {
+        first_moves[i] = atoi(tok_1); 
+        tok_1 = strtok(NULL," ");
+    }
+
+    tok_2 = strtok(second_move," ");
+
+    for(i=0;tok_2;i++) {
+        second_moves[i] = atoi(tok_2); 
+        tok_2 = strtok(NULL," ");
+    }
+
+    bid = calculate_bid(player,scotch_pos,first_moves,second_moves);
+    printf("%d",bid);
+    return 0;
+
+}
+
