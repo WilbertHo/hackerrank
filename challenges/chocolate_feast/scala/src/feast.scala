@@ -1,18 +1,16 @@
 import scala.annotation.tailrec
 
-class Feast {
+object Solution {
 
-  @tailrec
-  final def feast(credit: Int, cost: Int, total: Int): Int = {
-    if (credit < cost) return total;
-    return feast((credit / cost) + (credit % cost),
-                  cost,
-                  total + (credit / cost));
+  class Feast {
+    @tailrec
+    final def feast(credit: Int, cost: Int, total: Int): Int = {
+      if (credit < cost) return total;
+      return feast((credit / cost) + (credit % cost),
+                    cost,
+                    total + (credit / cost));
+    }
   }
-
-}
-
-object Main {
 
   def main(args: Array[String]) {
     // get input
@@ -21,10 +19,12 @@ object Main {
     val f = new Feast();
 
     for (line <- input.getLines()) {
-      val Array(dollars, costDollar, costWrapper) =
-        line.trim().split("""\s+""").map(x => x.toInt);
-      val candies = dollars / costDollar;
-      println(f.feast(candies, costWrapper, candies));
+      val in = line.trim().split("""\s+""").map(x => x.toInt);
+      if (in.length > 1) {
+        val Array(dollars, costDollar, costWrapper) = in.map(x => x.toInt);
+        val candies = dollars / costDollar;
+        println(f.feast(candies, costWrapper, candies));
+      }
     }
   }
 
