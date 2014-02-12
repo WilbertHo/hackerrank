@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import fileinput
 
 def calcCandies(credit, cost, wrapper_cost):
     total = (credit / cost)
@@ -13,15 +14,15 @@ def calcCandies(credit, cost, wrapper_cost):
     return total
 
 def main():
+    input = [line.strip() for line in fileinput.input()]
+
+    # numCases is the first line
+    numCases = input.pop(0)
+
     # Total candies == credit/cost + wrappers/wrapper_cost
-    credit = 10
-    cost = 2
-    wrapper_cost = 5
-
-    print calcCandies(credit, cost, wrapper_cost)
-
-    print calcCandies(12, 4, 4)
-    print calcCandies(6, 2, 2)
+    for line in input:
+        credit, cost, wrapper_cost = [int(x) for x in line.split()]
+        print calcCandies(credit, cost, wrapper_cost)
 
 if __name__ == '__main__':
     main()
