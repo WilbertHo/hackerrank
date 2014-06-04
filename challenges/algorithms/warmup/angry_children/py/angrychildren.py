@@ -16,7 +16,7 @@ def main():
     win_end = window_size - 1
     mininum = input[-1] - input[0]
 
-    while (win_end < len(input)):
+    while win_end < len(input):
         window_min = input[win_end] - input[win_start]
         mininum = window_min if window_min < mininum else mininum
         win_start += 1
