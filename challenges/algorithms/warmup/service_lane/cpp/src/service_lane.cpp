@@ -7,9 +7,19 @@
 using namespace std;
 
 template<typename T>
-vector<vector<T>>* process_input() {
-  vector<vector<T>> foo = new vector<vector<T>>;
-  return foo;
+vector<vector<T>>* process_input(istream* is) {
+  vector<vector<T>>* input = new vector<vector<T>>;
+  string buffer;
+  while (getline(*is, buffer)) {
+    istringstream iss(buffer);
+    vector<T> current_line;
+    T token;
+    while (iss >> token) {
+      current_line.push_back(token);
+    }
+    input->push_back(current_line);
+  }
+  return input;
 }
 
 int main(int argc, char* argv[]) {
@@ -18,8 +28,6 @@ int main(int argc, char* argv[]) {
   ifstream in_file;
   istringstream iss;
 
-  vector<vector<int>> in_vec;
-
   // Read from file if given, else STDIN
   if (argc == 2) {
     in_file.open(argv[1]);
@@ -27,6 +35,8 @@ int main(int argc, char* argv[]) {
   } else {
     input = &cin;
   }
+
+  vector<vector<int>>* v = process_input<int>(input);
 
   // first line gives the length of the road and number of cases
   getline(*input, buffer);
