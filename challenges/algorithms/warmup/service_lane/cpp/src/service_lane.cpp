@@ -23,10 +23,8 @@ vector<vector<T>>* process_input(istream* is) {
 }
 
 int main(int argc, char* argv[]) {
-  string buffer;
   istream * input;
   ifstream in_file;
-  istringstream iss;
 
   // Read from file if given, else STDIN
   if (argc == 2) {
@@ -35,34 +33,13 @@ int main(int argc, char* argv[]) {
   } else {
     input = &cin;
   }
-
-  vector<vector<int>>* v = process_input<int>(input);
+  auto v = process_input<int>(input);
 
   // first line gives the length of the road and number of cases
-  getline(*input, buffer);
-  iss.str(buffer);
-  int length, num_cases;
-  iss >> length >> num_cases;
+  int road_len, num_cases;
+  auto first_line = v->begin();
 
   // second line describes width of the road
-  getline(*input, buffer);
-  iss.str(string());
-  iss.clear();
-  iss.str(buffer);
-  vector<int> road;
-  int temp;
-  while (iss >> temp) {
-    road.push_back(temp);
-  }
-
-  while (getline(*input, buffer)) {
-    iss.str(buffer);
-    // int credit, price, wrapper_price;
-    // iss >> credit >> price >> wrapper_price;
-    // int wrappers = credit / price;
-    // wrappers += redeem_wrappers(wrappers, wrapper_price);
-    // cout << wrappers << endl;
-  }
 
   return 0;
 }
