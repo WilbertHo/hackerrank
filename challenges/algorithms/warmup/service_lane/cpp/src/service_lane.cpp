@@ -41,5 +41,13 @@ int main(int argc, char* argv[]) {
 
   // second line describes width of the road
 
+  // rest are cases
+  for (vector<vector<int>>::iterator temp = v->begin() + 2; temp != v->end(); temp++) {
+    for (vector<int>::iterator foo = temp->begin(); foo != temp->end(); foo++) {
+      cout << *foo << " ";
+    }
+    cout << endl;
+  }
+
   return 0;
 }
