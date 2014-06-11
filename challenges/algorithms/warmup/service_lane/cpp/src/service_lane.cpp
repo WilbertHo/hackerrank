@@ -55,7 +55,6 @@ int main(int argc, char* argv[]) {
 
   // second line describes width of the road
   const auto& road = v->begin() + 1;
-  const auto& road_begin = road->begin();
 
   // rest are cases
   for (unsigned int i = 2; i < v->size(); ++i) {
@@ -64,7 +63,7 @@ int main(int argc, char* argv[]) {
 
     // min_element compares [begin_iterator, end_iterator)
     // so add one to end_iterator to include final element
-    const auto& min_width = min_element(road_begin + entry, road_begin + _exit + 1);
+    const auto& min_width = min_element(road->begin() + entry, road->begin() + _exit + 1);
     cout << *min_width << endl;
   }
 
