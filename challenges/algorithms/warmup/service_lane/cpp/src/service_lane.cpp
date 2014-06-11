@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 using namespace std;
 
@@ -49,23 +50,22 @@ int main(int argc, char* argv[]) {
   */
 
   // first line gives the length of the road and number of cases
-  // int road_len
-  // int num_cases
   const auto& road_len = v->begin()->begin();
   const auto& num_cases = (v->begin()->begin()) + 1;
 
   // second line describes width of the road
   const auto& road = v->begin() + 1;
+  const auto& road_begin = road->begin();
 
   // rest are cases
-  // for (vector<vector<int>>::iterator temp = v->begin() + 2; temp != v->end(); temp++) {
-  for (auto line = v->begin() + 2; line != v->end(); line++) {
-    int min_width = 0;
-    // for (vector<int>::iterator foo = line->begin(); foo != line->end(); foo++) {
-    for (const auto& token: *line) {
-      cout << token << " ";
-    }
-    cout << endl;
+  for (unsigned int i = 2; i < v->size(); ++i) {
+    const unsigned int& entry = v->at(i).at(0);
+    const unsigned int& _exit = v->at(i).at(1);
+
+    // min_element compares [begin_iterator, end_iterator)
+    // so add one to end_iterator to include final element
+    const auto& min_width = min_element(road_begin + entry, road_begin + _exit + 1);
+    cout << *min_width << endl;
   }
 
   return 0;
