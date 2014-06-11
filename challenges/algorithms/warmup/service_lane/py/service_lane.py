@@ -13,7 +13,8 @@ def main():
 
     for case in _input:
         enter, exit = [int(width) for width in case.split()]
-        print enter, exit
+        exit += 1
+        print min(road[enter:exit])
 
 if __name__ == '__main__':
     main()
