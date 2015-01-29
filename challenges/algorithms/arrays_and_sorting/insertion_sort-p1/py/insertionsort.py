@@ -15,12 +15,12 @@ def insertion_sort(unsorted):
 def insertionSort(ar):
     sorting = insertion_sort(ar)
     for step in sorting:
-        print ' '.join([str(i) for i in step])
+        print ' '.join(map(str, step))
 
 
 def main():
     input = [line.strip() for line in fileinput.input()]
-    insertionSort([int(i) for i in input.pop().split()])
+    insertionSort(map(int, input.pop().split()))
 
 
 if __name__ == '__main__':
