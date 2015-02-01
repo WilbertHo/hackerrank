@@ -9,18 +9,20 @@ def insertion_sort(unsorted):
             yield unsorted
         if elem < unsorted[i]:
             unsorted[i] = elem
-            yield unsorted
+            # yield unsorted
 
 
 def insertionSort(ar):
     sorting = insertion_sort(ar)
+    count = 0
     for step in sorting:
-        print ' '.join([str(i) for i in step])
+        count += 1
+    return count
 
 
 def main():
     input = [line.strip() for line in fileinput.input()]
-    insertionSort([int(i) for i in input.pop().split()])
+    print insertionSort([int(i) for i in input.pop().split()])
 
 
 if __name__ == '__main__':
