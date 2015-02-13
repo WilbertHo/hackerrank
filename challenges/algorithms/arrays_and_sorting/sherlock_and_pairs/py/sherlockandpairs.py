@@ -6,8 +6,6 @@ from itertools import permutations
 def get_count(nums):
     count = 0
     for i, j in permutations(range(0, len(nums)), 2):
-        if i == j:
-            continue
         if nums[i] == nums[j]:
             count += 1
 
